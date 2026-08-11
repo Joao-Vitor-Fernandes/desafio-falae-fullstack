@@ -1,0 +1,10 @@
+# Dependências
+**/node_modules
+
+# Builds
+**/dist
+**/build
+
+# Editor / SO
+.DS_Store
+.vscode/
