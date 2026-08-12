@@ -5,6 +5,13 @@
 **/dist
 **/build
 
+# Variáveis de ambiente
+**/.env
+
+# Banco SQLite local
+**/prisma/*.db
+**/prisma/*.db-journal
+
 # Editor / SO
 .DS_Store
 .vscode/
