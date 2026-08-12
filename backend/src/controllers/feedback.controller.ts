@@ -62,3 +62,55 @@ export async function listFeedbacks(req: Request, res: Response) {
     }
 }
 // #endregion
+
+// #region GET /api/feedbacks/:id
+export async function getFeedbackById(req: Request, res: Response) {
+  try {
+    const id = Number(req.params.id);
+    if (!Number.isInteger(id)) {
+      res.status(400).json({ message: 'Id inválido.' });
+      return;
+    }
+
+    const feedback = await prisma.feedback.findUnique({ where: { id } });
+
+    if (!feedback) {
+      res.status(404).json({ message: 'Feedback não encontrado.' });
+      return;
+    }
+
+    res.json(feedback);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erro ao buscar o feedback.' });
+  }
+}
+// #endregion
+
+// #region GET /api/feedbacks/:id/notes
+export async function listFeedbackNotes(req: Request, res: Response) {
+  try {
+    const id = Number(req.params.id);
+    if (!Number.isInteger(id)) {
+      res.status(400).json({ message: 'Id inválido.' });
+      return;
+    }
+
+    const feedback = await prisma.feedback.findUnique({ where: { id } });
+    if (!feedback) {
+      res.status(404).json({ message: 'Feedback não encontrado.' });
+      return;
+    }
+
+    const notes = await prisma.feedbackNote.findMany({
+      where: { feedbackId: id },
+      orderBy: { createdAt: 'desc' },
+    });
+
+    res.json(notes);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erro ao buscar as anotações.' });
+  }
+}
+// #endregion
