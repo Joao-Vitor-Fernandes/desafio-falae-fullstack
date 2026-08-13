@@ -33,7 +33,6 @@ falae-feedback/
 \`\`\` -->
 
 ## Requisitos para executar
-
 - Node.js 18 ou superior
 - npm
 
@@ -41,42 +40,48 @@ Não é necessário instalar nenhum banco de dados separadamente, pois o projeto
 
 ## Instalação
 
-\`\`\`bash
+``` bash
 git clone <url-do-repositorio>
 cd falae-feedback
+``` 
 
 # Backend
+``` bash
 cd backend
 npm install
+``` 
 
 # Frontend
+``` bash
 cd ../frontend
 npm install
-\`\`\`
+``` 
 
 ## Configuração das variáveis de ambiente
 
 Cada pasta (\`backend/\` e \`frontend/\`) tem um arquivo \`.env.example\`. Copie para \`.env\` em cada uma:
 
-\`\`\`bash
+``` bash
 # dentro de backend/
 cp .env.example .env
+```
 
+``` bash
 # dentro de frontend/
 cp .env.example .env
-\`\`\`
+``` 
 
 **\`backend/.env\`**
-\`\`\`
+``` bash
 DATABASE_URL="file:./dev.db"
 PORT=3333
 FRONTEND_URL=http://localhost:5173
-\`\`\`
+```
 
 **\`frontend/.env\`**
-\`\`\`
+``` bash
 VITE_API_URL=http://localhost:3333/api
-\`\`\`
+```
 
 Os valores padrão já funcionam para rodar localmente sem nenhum ajuste.
 
@@ -84,10 +89,10 @@ Os valores padrão já funcionam para rodar localmente sem nenhum ajuste.
 
 O banco é SQLite (um único arquivo, sem necessidade de servidor). Dentro de \`backend/\`, rode:
 
-\`\`\`bash
+``` bash
 npx prisma migrate dev --name init
 npx prisma db seed
-\`\`\`
+```
 
 O primeiro comando cria as tabelas (\`backend/prisma/dev.db\`); o segundo popula com 12 feedbacks e 3 anotações de teste, cobrindo os três canais, os três status e cenários de feedback crítico com e sem anotação, necessários para testar a regra de negócio.
 
@@ -97,17 +102,19 @@ Para inspecionar o banco visualmente: \`npx prisma studio\`.
 
 Em dois terminais separados:
 
-\`\`\`bash
+``` bash
 # Terminal 1 — backend
 cd backend
 npm run dev
 # roda em http://localhost:3333
+``` 
 
+``` bash
 # Terminal 2 — frontend
 cd frontend
 npm run dev
 # roda em http://localhost:5173
-\`\`\`
+``` 
 
 Acesse \`http://localhost:5173\` no navegador.
 
