@@ -1,5 +1,5 @@
 import { apiFetch } from './client';
-import type { FeedbackListResponse } from '../types/feedback';
+import type { Feedback, FeedbackListResponse, FeedbackNote, FeedbackStatus } from '../types/feedback';
 import type { Filters } from '../types/filters';
 
 export function listFeedbacks(filters: Filters): Promise<FeedbackListResponse> {
@@ -12,4 +12,26 @@ export function listFeedbacks(filters: Filters): Promise<FeedbackListResponse> {
 
     const query = params.toString();
     return apiFetch<FeedbackListResponse>(`/feedbacks${query ? `?${query}` : ''}`);
+}
+
+export function getFeedback(id: number): Promise<Feedback> {
+    return apiFetch<Feedback>(`/feedbacks/${id}`);
+}
+
+export function listFeedbackNotes(id: number): Promise<FeedbackNote[]> {
+    return apiFetch<FeedbackNote[]>(`/feedbacks/${id}/notes`);
+}
+
+export function addFeedbackNote(id: number, description: string): Promise<FeedbackNote> {
+    return apiFetch<FeedbackNote>(`/feedbacks/${id}/notes`, {
+        method: 'POST',
+        body: JSON.stringify({ description }),
+    });
+}
+
+export function updateFeedbackStatus(id: number, status: FeedbackStatus): Promise<Feedback> {
+    return apiFetch<Feedback>(`/feedbacks/${id}/status`, {
+        method: 'PATCH',
+        body: JSON.stringify({ status }),
+    });
 }

@@ -9,6 +9,7 @@ export function useFeedbacks(filters: Filters) {
     const [data, setData] = useState<FeedbackListResponse | null>(null);
     const [status, setStatus] = useState<FetchStatus>('loading');
     const [errorMessage, setErrorMessage] = useState('');
+    const [refetchIndex, setRefetchIndex] = useState(0);
 
     useEffect(() => {
         let cancelled = false;
@@ -26,11 +27,12 @@ export function useFeedbacks(filters: Filters) {
                 setStatus('error');
             });
 
-        return () => {
-            cancelled = true;
-        };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [filters.search, filters.channel, filters.status, filters.rating]);
+        return () => { cancelled = true; };
+    }, [filters.search, filters.channel, filters.status, filters.rating, refetchIndex]);
 
-    return { data, status, errorMessage };
+    function refetch() {
+        setRefetchIndex((current) => current + 1);
+    }
+
+    return { data, status, errorMessage, refetch };
 }

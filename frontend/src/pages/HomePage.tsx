@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { IndicatorsPanel } from '../components/IndicatorsPanel';
 import { FiltersBar } from '../components/FiltersBar';
 import { FeedbackList } from '../components/FeedbackList';
+import { FeedbackDetailModal } from '../components/FeedbackDetailModal';
 import { useFeedbacks } from '../hooks/useFeedbacks';
 import { useDebouncedValue } from '../hooks/useDebouncedValue';
 import { EMPTY_FILTERS, type Filters } from '../types/filters';
@@ -9,8 +10,9 @@ import { EMPTY_FILTERS, type Filters } from '../types/filters';
 export function HomePage() {
     const [filters, setFilters] = useState<Filters>(EMPTY_FILTERS);
     const debouncedSearch = useDebouncedValue(filters.search, 400);
+    const [selectedFeedbackId, setSelectedFeedbackId] = useState<number | null>(null);
 
-    const { data, status, errorMessage } = useFeedbacks({ ...filters, search: debouncedSearch });
+    const { data, status, errorMessage, refetch } = useFeedbacks({ ...filters, search: debouncedSearch });
 
     function handleFiltersChange(updates: Partial<Filters>) {
         setFilters((current) => ({ ...current, ...updates }));
@@ -18,11 +20,6 @@ export function HomePage() {
 
     function handleClearFilters() {
         setFilters(EMPTY_FILTERS);
-    }
-
-    function handleSelectFeedback(id: number) {
-        // A Parte 8 abre o modal/painel de detalhes usando esse id
-        console.log('Feedback selecionado:', id);
     }
 
     return (
@@ -36,15 +33,18 @@ export function HomePage() {
 
             <main className="max-w-5xl mx-auto px-4 py-6">
                 <IndicatorsPanel indicators={data?.indicators ?? null} />
-
-                {status === 'loading' && data !== null && (
-                    <p className="text-xs text-slate-400 mb-2">Atualizando...</p>
-                )}
-
+                {status === 'loading' && data !== null && <p className="text-xs text-slate-400 mb-2">Atualizando...</p>}
                 <FiltersBar filters={filters} onChange={handleFiltersChange} onClear={handleClearFilters} />
-
-                <FeedbackList status={status} data={data} errorMessage={errorMessage} onSelect={handleSelectFeedback} />
+                <FeedbackList status={status} data={data} errorMessage={errorMessage} onSelect={setSelectedFeedbackId} />
             </main>
+
+            {selectedFeedbackId !== null && (
+                <FeedbackDetailModal
+                    feedbackId={selectedFeedbackId}
+                    onClose={() => setSelectedFeedbackId(null)}
+                    onStatusChanged={refetch}
+                />
+            )}
         </div>
     );
 }
