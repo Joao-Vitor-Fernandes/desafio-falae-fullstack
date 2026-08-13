@@ -71,14 +71,14 @@ cp .env.example .env
 cp .env.example .env
 ``` 
 
-**\`backend/.env\`**
+**\backend/.env\**
 ``` bash
 DATABASE_URL="file:./dev.db"
 PORT=3333
 FRONTEND_URL=http://localhost:5173
 ```
 
-**\`frontend/.env\`**
+**\frontend/.env\**
 ``` bash
 VITE_API_URL=http://localhost:3333/api
 ```
@@ -102,21 +102,21 @@ Para inspecionar o banco visualmente: \`npx prisma studio\`.
 
 Em dois terminais separados:
 
-# Terminal 1 — backend
+## Terminal 1 — backend
 ``` bash
 cd backend
 npm run dev
 # roda em http://localhost:3333
 ``` 
 
-# Terminal 2 — frontend
+## Terminal 2 — frontend
 ``` bash
 cd frontend
 npm run dev
 # roda em http://localhost:5173
 ``` 
 
-Acesse \`http://localhost:5173\` no navegador.
+Acesse \http://localhost:5173\ no navegador.
 
 ## Funcionalidades implementadas
 
