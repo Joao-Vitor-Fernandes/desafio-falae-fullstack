@@ -102,15 +102,15 @@ Para inspecionar o banco visualmente: \`npx prisma studio\`.
 
 Em dois terminais separados:
 
-``` bash
 # Terminal 1 — backend
+``` bash
 cd backend
 npm run dev
 # roda em http://localhost:3333
 ``` 
 
-``` bash
 # Terminal 2 — frontend
+``` bash
 cd frontend
 npm run dev
 # roda em http://localhost:5173
