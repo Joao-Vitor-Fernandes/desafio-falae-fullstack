@@ -11,27 +11,6 @@ Permite listar, buscar e filtrar feedbacks, acompanhar indicadores agregados, vi
 
 > Nota: o projeto foi desenvolvido em agosto de 2026, e algumas dependências instaladas (Express 5, Prisma 7, TypeScript ~7, Tailwind v4, React 19) são versões recentes com mudanças relevantes em relação a tutoriais mais antigos — isso está detalhado em [AI_USAGE.md](./AI_USAGE.md).
 
-<!-- ## Estrutura do projeto
-
-\`\`\`
-falae-feedback/
-├── backend/          # API REST (Node/Express/Prisma)
-│   ├── prisma/       # schema, migrations e seed
-│   └── src/
-│       ├── controllers/
-│       ├── routes/
-│       ├── lib/       # Prisma Client
-│       └── types.ts
-└── frontend/         # Interface (Vite/React)
-    └── src/
-        ├── api/       # cliente HTTP e chamadas à API
-        ├── components/
-        ├── hooks/
-        ├── pages/
-        ├── types/
-        └── utils/
-\`\`\` -->
-
 ## Requisitos para executar
 - Node.js 18 ou superior
 - npm
@@ -71,14 +50,14 @@ cp .env.example .env
 cp .env.example .env
 ``` 
 
-**\backend/.env\**
+**`backend/.env`**
 ``` bash
 DATABASE_URL="file:./dev.db"
 PORT=3333
 FRONTEND_URL=http://localhost:5173
 ```
 
-**\frontend/.env\**
+**`frontend/.env`**
 ``` bash
 VITE_API_URL=http://localhost:3333/api
 ```
