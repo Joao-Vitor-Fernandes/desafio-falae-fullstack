@@ -98,7 +98,7 @@ npm run dev
 # roda em http://localhost:5173
 ``` 
 
-Acesse \http://localhost:5173\ no navegador.
+Acesse `http://localhost:5173` no navegador.
 
 ## Funcionalidades implementadas
 
