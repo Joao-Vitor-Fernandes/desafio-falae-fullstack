@@ -6,8 +6,11 @@ Permite listar, buscar e filtrar feedbacks, acompanhar indicadores agregados, vi
 
 ## Tecnologias
 
-**Backend:** Node.js, TypeScript, Express, Prisma ORM, SQLite (via `@prisma/adapter-libsql`).
-**Frontend:** React, TypeScript, Vite, Tailwind CSS v4.
+#Backend: 
+Node.js, TypeScript, Express, Prisma ORM, SQLite (via `@prisma/adapter-libsql`).
+
+#Frontend: 
+React, TypeScript, Vite, Tailwind CSS v4.
 
 > Nota: o projeto foi desenvolvido em agosto de 2026, e algumas dependências instaladas (Express 5, Prisma 7, TypeScript ~7, Tailwind v4, React 19) são versões recentes com mudanças relevantes em relação a tutoriais mais antigos — isso está detalhado em [AI_USAGE.md](./AI_USAGE.md).
 
