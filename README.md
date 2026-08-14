@@ -27,13 +27,13 @@ git clone <url-do-repositorio>
 cd falae-feedback
 ``` 
 
-# Backend
+## Backend
 ``` bash
 cd backend
 npm install
 ``` 
 
-# Frontend
+## Frontend
 ``` bash
 cd ../frontend
 npm install
